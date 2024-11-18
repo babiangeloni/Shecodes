@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timezones are fun!</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-timezone@0.5.34/moment-timezone-with-data.min.js"></script>
+  </head>
+  <body>
+    <select id="city">
+      <option value="">Select the city</option>
+      <option value="Europe/Paris">Paris</option>
+      <option value="Asia/Tokyo">Tokyo</option>
+      <option value="Oceania/Sydney">Sydney</option>
+    </select>
+
+    <script>
+      function showDate(event) {
+        if (event.target.value.length > 0) {
+          let currentTime = moment()
+            .tz(event.target.value)
+            .format("dddd, MMMM D, YYYY h:mm A");
+
+          alert(`It is ${currentTime} in ${event.target.value}`);
+        }
+      }
+      let selectElement = document.querySelector("#city");
+      selectElement.addEventListener("change", showDate);
+    </script>
+  </body>
+</html>
